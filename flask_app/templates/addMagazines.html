@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddMagazines</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg  " id="nav-bar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Dashboard</a>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class=" w-50 m-auto mt-4 bg py-5 text-center">New Magazine</h1>
+
+    <form class="d-flex justify-content-evenly  bg w-50 m-auto " method="post" action="/addmagazines">
+
+        <div class="padd-20">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            {% with messages = get_flashed_messages(category_filter=["titleError"]) %}
+            {% if messages %}
+
+            {% for message in messages %}
+            <p class="text-danger text-center">{{ message }}</p>
+            {% endfor %}
+
+            {% endif %}
+            {% endwith %}
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class="form-control" name="description" id="description" cols="30" rows="4"></textarea>
+            </div>
+            {% with messages = get_flashed_messages(category_filter=["descriptionError"]) %}
+            {% if messages %}
+
+            {% for message in messages %}
+            <p class="text-danger text-center">{{ message }}</p>
+            {% endfor %}
+
+            {% endif %}
+            {% endwith %}
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="/" class="btn btn-primary ms-3">Cancel</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </form>
+
+
+
+   
+</body>
+
+</html>
